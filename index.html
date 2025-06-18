@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Raglan Yoke Depth Calculator</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #fdfcfb;
+      padding: 2em;
+      color: #333;
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      color: #8b3dff;
+    }
+    label {
+      display: block;
+      margin: 1em 0 0.3em;
+    }
+    input {
+      padding: 0.5em;
+      font-size: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 1em;
+      padding: 0.6em 1.2em;
+      font-size: 1rem;
+      background: #8b3dff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #6f2dcc;
+    }
+    #result {
+      margin-top: 1.5em;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧶 Raglan Yoke Depth Calculator</h1>
+  <label for="stitches">Stitches to Increase</label>
+  <input type="number" id="stitches" placeholder="e.g. 160" />
+
+  <label for="gauge">Stitch Gauge (stitches per inch)</label>
+  <input type="number" id="gauge" step="0.1" placeholder="e.g. 5.5" />
+
+  <button onclick="calculateYoke()">Calculate</button>
+
+  <p id="result"></p>
+
+  <script>
+    function calculateYoke() {
+      const stitches = parseFloat(document.getElementById("stitches").value);
+      const gauge = parseFloat(document.getElementById("gauge").value);
+      const resultElement = document.getElementById("result");
+
+      if (isNaN(stitches) || isNaN(gauge) || gauge === 0) {
+        resultElement.textContent = "Please enter valid numbers for both fields.";
+        return;
+      }
+
+      const yokeDepth = stitches / (gauge * 2); // Assumes increases every other round
+      resultElement.textContent = `Estimated yoke depth: ${yokeDepth.toFixed(2)} inches`;
+    }
+  </script>
+</body>
+</html>
